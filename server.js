@@ -3,14 +3,23 @@ const app = express(); //Calling this function sets up a server
 app.set('view engine', 'ejs');
 
 
+
 app.get('/', (req, res)=>{
     console.log('Here'); // request
-    res.render("index");
+    res.render("index",{user:"Peter"});
    
     // res.status(500).send("Hello World!"); //response wiht harding coding status
     //res.download('server.js');
 
 
 }); // this function will run when someone goes to the root fldr 
+
+app.get('/users', (req, res)=>{
+    res.send('User List');
+});
+
+app.get('/users/new', (req, res)=>{
+    res.send('New User Form');
+});
 
 app.listen(3030);//to stop is cntrl C
