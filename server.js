@@ -1,6 +1,9 @@
 const express = require('express'); //building an app\
+const userRouter = 
+require('./routes/users');
 const app = express(); //Calling this function sets up a server
 app.set('view engine', 'ejs');
+app.use('/users', userRouter);
 
 
 
@@ -18,8 +21,20 @@ app.get('/users', (req, res)=>{
     res.send('User List');
 });
 
+
 app.get('/users/new', (req, res)=>{
     res.send('New User Form');
 });
 
+app.get('/posts', (req, res)=>{
+    res.send('Post List');
+});
+
+app.get('/post/new', (req, res)=>{
+    res.send('New Post');
+});
+
+
 app.listen(3030);//to stop is cntrl C
+
+//make our own router 
