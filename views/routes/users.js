@@ -29,6 +29,7 @@ router.route("/:id").get((req, res)=>{
   //  res.send(`Getting User data: ${req.params.id}`);
 
 //});
+const users = [{name:"Peter",role:"admin"},{name:"Bob",role: "User"}];
 router.param("id",(req, res, next, id)=>{
     console.log(`Accessing user #${id}`);
     next();
