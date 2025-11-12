@@ -9,4 +9,4 @@ router.get('/', (req, res)=>{
 router.get('/new', (req, res)=>{
     res.send('New Post');
 });
-module.exports = routers;
+module.exports = router;
