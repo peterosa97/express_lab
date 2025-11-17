@@ -3,7 +3,7 @@ const router =
 express.Router();
 
 router.get('/', (req, res)=>{
-    res.send('User List');
+    res.send(`user/list`,{users:users});
 });
 
 router.get('/new', (req, res)=>{
@@ -11,6 +11,11 @@ router.get('/new', (req, res)=>{
 });
 
 router.post('/',(req, res)=>{
+    res.send("User Created!");
+    const firstName =req.body.firstName;
+    console.log(`Adding User: ${name}`);
+    users.push({name:firstName});
+    console.log(`New Set of Users: ${users}`);
 
 });
 
