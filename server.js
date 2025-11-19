@@ -1,11 +1,11 @@
 const express = require('express'); //building an app\
-const userRouter = 
-require('./routes/users');
+const userRouter = require('./routes/users');
+// const postRouter = require('./routes/posts');
 const app = express(); //Calling this function sets up a server
 app.set('view engine', 'ejs');
 //app.use(logger);
 app.use(express.static("public"));
-app.use(express.urlencoded({extendedLtrue}));
+app.use(express.urlencoded({extended:true}));
 
 
 
@@ -32,9 +32,7 @@ app.get('/users', (req, res)=>{
 
 
 
-app.get('/new', (req, res)=>{
-    res.render('users/new', {firstName:"Please enter your name"})
-});
+
 
 app.get('/posts', (req, res)=>{
     res.send('Post List');
