@@ -1,6 +1,6 @@
 const express = require('express'); //building an app\
 const userRouter = require('./routes/users');
-// const postRouter = require('./routes/posts');
+const postRouter = require('./routes/posts');
 const app = express(); //Calling this function sets up a server
 app.set('view engine', 'ejs');
 //app.use(logger);

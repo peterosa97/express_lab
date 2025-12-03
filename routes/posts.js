@@ -1,6 +1,5 @@
 const express = require('express'); //building an app\
-const router = 
-express.Router();
+const router = express.Router();
 
 router.get('/', (req, res)=>{
     res.send('Post List');

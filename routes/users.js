@@ -1,6 +1,5 @@
 const express = require('express'); //building an app\
-const router = 
-express.Router();
+const router = express.Router();
 
 
 
@@ -64,4 +63,4 @@ router.param("id",(req, res, next, id)=>{
     next();
 
 });
-module.exports = routers;
+module.exports = router;
