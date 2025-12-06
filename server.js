@@ -1,54 +1,27 @@
-const express = require('express'); //building an app\
+const express = require('express');
+
 const userRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
-const app = express(); //Calling this function sets up a server
+
+const app = express(); 
 app.set('view engine', 'ejs');
-//app.use(logger);
 app.use(express.static("public"));
 app.use(express.urlencoded({extended:true}));
-
-
+// app.use(logger);
 
 app.use('/users', userRouter);
-app.use('/posts', postRouter);
-
-
-
+app.use('/posts',postRouter);
 
 app.get('/', (req, res)=>{
-    console.log('Here'); // request
-    res.render("index",{user:"Peter"});
-   
-    // res.status(500).send("Hello World!"); //response wiht harding coding status
-    //res.download('server.js');
-
-    
-
-}); // this function will run when someone goes to the root fldr 
-
-app.get('/users', (req, res)=>{
-    res.send('User List');
-});
+    console.log('Here');
+    res.render("index", 
+        {user:"George!",});
+}); 
 
 
+app.listen(3030);
 
-
-
-app.get('/posts', (req, res)=>{
-    res.send('Post List');
-});
-
-app.get('/post/new', (req, res)=>{
-    res.send('New Post');
-});
-
-
-app.listen(3030);//to stop is cntrl C
-
-//make our own router 
-function logger(req,res,next){
+function logger(req, res, next){
     console.log(`Page Accessed: ${req.originalUrl}`);
     next();
-} 
-
-
+}

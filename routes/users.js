@@ -1,66 +1,77 @@
-const express = require('express'); //building an app\
-const router = express.Router();
+const express = 
+require('express');
 
-
+const router = 
+express.Router(); 
 
 router.get('/', (req, res)=>{
-    res.send(`user/list`,{users:users});
+    res.render(`users/list`, {users:users})
 });
-
 router.get('/new', (req, res)=>{
-    res.render('users/new', {firstName:""})
+    res.render('users/new', {firstName: ""});
 });
 
+router.post('/', (req, res)=>{
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const age = req.body.age;
+    const gender = req.body.gender;
 
-router.get('/new', (req, res)=>{
-    res.send('New User Form');
-});
-
-router.post('/',(req, res)=>{
-    res.send("User Created!");
-    const firstName =req.body.firstName;
-    const lastName =req.body.lastName;
-    const gender =req.body.gender;
-    const age =req.body.age;
-    const isValid = firstName !=="" && lastName!=="";
+    const isValid = firstName !=="" && lastName!=="";//Check if they are there, added
     if(isValid)
     {
         console.log(`Adding User: ${firstName}`);
         users.push({
-            name:firstName,
+            firstName:firstName,
             lastName:lastName,
             gender:gender,
-            age:age,
+            age:age, //trailing comma
         });
-        console.log(`New Set of Users: ${users}`)
+        console.log(`New Set of Users: ${users}`);
         res.send("User Created!");
     }
-
-    console.log(`Adding User: ${name}`);
-    users.push({name:firstName});
-    console.log(`New Set of Users: ${users}`);
-
+    else{
+        console.log("Error adding user!");
+        res.render("users/new", {firstName:firstName});
+    }
 });
-console.log
-
+// router.get('/:id',(req, res)=>{
+// 	res.send(`Getting User data: ${req.params.id}`);
+// });
 router.route("/:id").get((req, res)=>{
-    res.send(`Getting User data: ${req.params.id}`);
-}).delete(( req, res)=>{
-
+ 	res.send(`Getting User data: ${req.params.id}`);
+}).delete((req, res)=>{
+    res.send(`Deleting user with id: ${req.params.id}`);
 }).put((req, res)=>{
     res.send(`Updating user with id: ${req.params.id}`);
-
 });
+const users =[
+    {
+        firstName:"George",
+        lastName:"Salayka",
+        age:40,
+        gender:"Male",
+    },{
+        firstName:"George",
+        lastName:"Salayka",
+        age:40,
+        gender:"Male",
+    },{
+        firstName:"George",
+        lastName:"Salayka",
+        age:40,
+        gender:"Male",
+    },{
+        firstName:"George",
+        lastName:"Salayka",
+        age:40,
+        gender:"Male",
+    }
+];
 
 
-//router.get('/:id',(req, res)>={
-  //  res.send(`Getting User data: ${req.params.id}`);
-
-//});
-const users = [];
-router.param("id",(req, res, next, id)=>{
+router.param("id", (req, res, next, id)=>{
     console.log(`Accessing user #${id}`);
     next();
-
 });
 module.exports = router;
